@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Lego Boxr</title>
-		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
-		<link href="app.css" rel="stylesheet">
-	</head>
-	<body>
-		<section class="section-search">
-			<input type="search" class="form-control" placeholder="Search..."/>
-		</section>
-		<section class="section-result">
-			<div class="list-group">
-				<a href="#" class="list-group-item">
-					<span class="badge">S1</span>
-					Small 1
-				</a>
-			</div>
-		</section>
-		<script src="app.js"></script>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Lego Storage</title>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app" class="p-5 grid gap-4 grid-cols-3">
+
+            <a v-bind:href="store.id" v-for="store in stores" class="block border-2 border-teal-500 rounded-sm">
+                <h5 class="p-3">{{ store.label }}</h5>
+
+                <div v-if="store.containers" class="grid">
+                    <div v-for="container in store.containers" class="border p-2 py-4 text-center" v-bind:style="{ gridArea: container.area }">
+                        {{ container.area }}
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="lib/js/app.js"></script>
+    </body>
 </html>
