@@ -2,14 +2,19 @@ const stores = {
     template: `
         <div class="grid grid-cols-2 gap-4">
             <router-link 
-                :to="{path: '/store/' + store.id}" 
+                :to="{path: '/store/' + store.id, params: store}" 
                 v-for="store in stores" 
-                class="bg-white block border-2 border-teal-500 rounded-sm">
-                <h5 class="p-3 bg-teal-500 text-white">{{ store.label }}</h5>
-                <div v-if="store.containers" class="grid">
-                    <div v-for="container in store.containers" class="border p-2 py-4" v-bind:style="{ gridArea: container.area }">
+                class="bg-white block border-4 bg-teal-500 border-teal-500 rounded-sm">
+                <h5 class="p-3 text-white">{{ store.label }}</h5>
+                <div v-if="store.containers" class="grid gap-1">
+                    <div 
+                        v-for="container in store.containers" 
+                        class="bg-white p-4" 
+                        v-bind:style="{ gridArea: container.area }">
                         <div v-for="item in container.items" class="">
-                            {{ item.label }} <br/> <small v-for="icolour in item.colour">{{ icolour }}, </small>
+                            <img v-bind:src="'/lib/img/parts/' + item.no + '.png'" />
+                            <span class="hidden">
+                            {{ item.label }} <br/> <small v-for="icolour in item.colour">{{ icolour }}, </small></span>
                         </div>
                     </div>
                 </div>
